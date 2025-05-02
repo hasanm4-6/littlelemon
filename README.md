@@ -29,9 +29,9 @@ Pipenv (Python package manager)
 
 1. Clone the repository:
 
-```git  clone https://github.com/yourusername/little-lemon-restaurant.git```
+```git  clone https://github.com/hasanm4-6/littlelemon.git```
 
-```cd little-lemon-restaurant```
+```cd littlelemon```
 
 2. Install dependencies and create virtual environment
 
@@ -41,11 +41,19 @@ Pipenv (Python package manager)
 
 ```pipenv shell```
 
-4. Apply database migrations
+4. Install Django 
+
+```pip install django```
+
+5. Install mysqlclient
+
+```pip install mysqlclient```
+
+6. Apply database migrations
 
 ```python manage.py migrate```
 
-5. Start the development server
+7. Start the development server
 
 ```python manage.py runserver```
 
