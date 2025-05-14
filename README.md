@@ -29,9 +29,9 @@ Pipenv (Python package manager)
 
 1. Clone the repository:
 
-```git  clone https://github.com/yourusername/little-lemon-restaurant.git```
+```git  clone https://github.com/hasanm4-6/littlelemon.git```
 
-```cd little-lemon-restaurant```
+```cd littlelemon```
 
 2. Install dependencies and create virtual environment
 

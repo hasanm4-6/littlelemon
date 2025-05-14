@@ -1,12 +1,18 @@
-from django.shortcuts import render
-from .forms import BookingForm
-from .models import Menu
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView
+from .serializers import MenuSerializer, BookingSerializer, UserSerializer  
+from rest_framework.decorators import api_view, permission_classes
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets, permissions
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.http import JsonResponse
 from django.core import serializers
-from .models import Booking
+from django.shortcuts import render
+from .models import Menu, Booking
+from .forms import BookingForm
 from datetime import datetime
 import json
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
 
 def home(request):
     return render(request, 'index.html')
@@ -48,6 +54,28 @@ def display_menu_item(request, pk=None):
         
     return render(request, 'menu_item.html', {"menu_item": menu_item}) 
 
+class MenuItemView(ListCreateAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class SingleMenuItemView(RetrieveUpdateAPIView, DestroyAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+    
+class BookingViewSet(ModelViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    
+class MenuViewSet(ModelViewSet):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+    
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 @csrf_exempt
 def bookings(request):
     if request.method == "POST":
@@ -61,9 +89,21 @@ def bookings(request):
         else:
             return HttpResponse("{'error':1}", content_type='application/json')
 
-    date = request.GET.get('date', datetime.today().date())
-    bookings = Booking.objects.filter(reservation_date=date)
+    # date = request.GET.get('date', datetime.today().date())
+    # bookings = Booking.objects.filter(reservation_date=date)
 
-    booking_json = serializers.serialize('json', bookings)
+    # booking_json = serializers.serialize('json', bookings)
 
-    return HttpResponse(booking_json, content_type='application/json')
+    # return HttpResponse(booking_json, content_type='application/json')
+    date_str = request.GET.get('date')
+    if date_str:
+        query_date = date_str
+    else:
+        query_date = str(datetime.today().date())
+
+    bookings = Booking.objects.filter(reservation_date=query_date)
+    booking_json = json.loads(serializers.serialize('json', bookings))
+
+    label = "Today" if query_date == str(datetime.today().date()) else query_date
+
+    return JsonResponse({label: booking_json}, safe=False)

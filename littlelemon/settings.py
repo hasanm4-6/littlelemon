@@ -31,14 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.staticfiles',
+    'rest_framework.authtoken',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # The settings for app updated for the Graded assessment
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'rest_framework',
     'restaurant',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +54,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'littlelemon.urls'
+
+DJOSER={"USER_ID_FIELD":"username"}
 
 TEMPLATES = [
     {
@@ -69,6 +73,13 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
 
 WSGI_APPLICATION = 'littlelemon.wsgi.application'
 

@@ -1,0 +1,17 @@
+API's:
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/about/
+http://127.0.0.1:8000/menu/
+http://127.0.0.1:8000/menu-item/1/
+http://127.0.0.1:8000/book/
+http://127.0.0.1:8000/reservations/
+http://127.0.0.1:8000/bookings
+http://127.0.0.1:8000/bookings?date=2025-05-02
+http://127.0.0.1:8000/auth/
+http://127.0.0.1:8000/api/
+http://127.0.0.1:8000/api/menu/
+http://127.0.0.1:8000/api/users/
+http://127.0.0.1:8000/api/tables/
+http://127.0.0.1:8000/api/menu/2/
+http://127.0.0.1:8000/restaurant/booking/
+http://127.0.0.1:8000/api-token-auth/
