@@ -60,7 +60,6 @@ DJOSER={"USER_ID_FIELD":"username"}
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # The settings for templates updated for the Graded assessment
         'DIRS': ['restaurant/templates' ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -98,7 +97,6 @@ DATABASES = {
     }
 }
 
-# The settings for media files have been updated for the Graded assessment
 MEDIA_URL = '/media/'
 
 # Password validation
@@ -135,7 +133,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-# The settings for static files have been updated for the Graded assessment
 STATIC_URL = 'restaurant/static/'
 
 STATICFILES_DIRS = [
