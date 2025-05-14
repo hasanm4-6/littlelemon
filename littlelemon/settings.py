@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'littlelemon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reservations',
+        'NAME': '', # your database name
         'HOST' : '127.0.0.1',
         'PORT' : '3306',
-        'USER' : 'root',
-        'PASSWORD' : 'HM406_FEBruary25,2005',
+        'USER' : 'root',  # your username for mysql 
+        'PASSWORD' : '', # your password for that username
     }
 }
 
